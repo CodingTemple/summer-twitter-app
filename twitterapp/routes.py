@@ -1,6 +1,11 @@
-from flask import render_template,redirect
+from flask import render_template,redirect,url_for
 from twitterapp import app
 from twitterapp.forms import SignUpForm
+
+from twitterapp.models import db
+
+# Importing Database Model
+from twitterapp.models import User
 
 @app.route("/")
 def hello_world():
@@ -9,10 +14,13 @@ def hello_world():
 @app.route("/register",methods=["GET","POST"])
 def createUser():
     form = SignUpForm()
-    if form.validate():
-        redirect("/")
-        print(form.username.data)
+    if form.validate_on_submit():
+        print("The user is {}".format(form.username.data))
+        user = User(form.username.data,form.email.data,form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for("hello_world"))
     else:
-        print("Not valid")
+        print("Form not valid")
         print(form.errors)
     return render_template("register.html",form=form)

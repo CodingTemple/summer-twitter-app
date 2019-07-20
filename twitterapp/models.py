@@ -1,6 +1,8 @@
-from twitterapp import db
-
+from flask_sqlalchemy import SQLAlchemy
+from twitterapp import app
 from werkzeug.security import generate_password_hash,check_password_hash
+
+db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
