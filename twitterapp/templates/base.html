@@ -20,8 +20,8 @@
                 <a class="nav-item nav-link active" href="{{ url_for('hello_world') }}">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="{{ url_for('createUser') }}">Register</a>
                 <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                <a class="nav-item nav-link" href="#">Posts</a>
-                <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-item nav-link" href="{{ url_for('post') }}">Posts</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
               </div>
             </div>
           </nav>
